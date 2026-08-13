@@ -1,13 +1,13 @@
 # Ambiente Postgres (Docker)
 
-Ambiente containerizado de banco de dados reprodutível com Postgres e pgAdmin, criado como template reutilizável sem dependência de instalação nativa
-no sistema operacional. 
-
-O mesmo `docker-compose.yml` pode ser copiado para outros projetos que precisem de um Postgres isolado, bastando ajustar o arquivo `.env`.
+Ambiente containerizado com Postgres e pgAdmin, criado como template reutilizável para os
+projetos de banco de dados reprodutível, sem dependência de instalação nativa
+no sistema operacional. O mesmo `docker-compose.yml` pode ser copiado para outros projetos 
+que precisem de um Postgres isolado, bastando ajustar o arquivo `.env`.
 
 ## Pré-requisitos
 
-- Docker instalado e em execução (backend WSL2 no Windows)
+- Docker Desktop instalado e em execução (backend WSL2 no Windows)
 - Portas `5432` e `8080` livres na máquina, ou ajustadas via `.env`
 
 ## Estrutura de arquivos
@@ -40,7 +40,7 @@ Variáveis disponíveis:
 | `PGADMIN_PASSWORD` | `admin` | Senha de acesso ao pgAdmin |
 | `PGADMIN_PORT` | `8080` | Porta exposta do pgAdmin no host |
 
-> Vale reforçar que o arquivo `.env` real fica fora do controle de versão e, assim, apenas `.env.example`, com valores
+O arquivo `.env` real fica fora do controle de versão. Apenas `.env.example`, com valores
 de referência, é commitado.
 
 ## Como usar
@@ -63,11 +63,24 @@ docker ps
 docker compose down
 ```
 
-**Resetar o ambiente por completo, apagando os dados do volume:**
+**Resetar o ambiente por completo, apagando os dados dos volumes:**
 
 ```bash
 docker compose down -v
 ```
+
+## Persistência de dados
+
+O ambiente usa dois volumes nomeados:
+
+| Volume | Serviço | Conteúdo |
+|---|---|---|
+| `pgdata` | postgres | Dados do banco (tabelas, registros) |
+| `pgadmin_data` | pgadmin | Configurações do pgAdmin (servidores registrados, sessão) |
+
+Sem o volume do pgAdmin, `docker compose down` destrói o container e a conexão registrada
+com o servidor se perde, exigindo novo cadastro a cada subida do ambiente. Com o volume
+mapeado, apenas `docker compose down -v` apaga essas configurações, de forma intencional.
 
 ## Conectando o pgAdmin ao Postgres
 
@@ -85,18 +98,18 @@ docker compose down -v
 | Username | valor de `POSTGRES_USER` |
 | Password | valor de `POSTGRES_PASSWORD` |
 
-> O host é o nome do serviço (`postgres`), não `localhost`. Os dois containers se comunicam
+O host é o nome do serviço (`postgres`), não `localhost`. Os dois containers se comunicam
 pela rede padrão criada automaticamente pelo Compose, que resolve os serviços pelo nome
 declarado em `services:`.
 
 ## Reutilizando este template em outro projeto
 
-1. Copie a pasta `postgres/` inteira para o novo local (ex: `Analise de Dados/banco de dados/postgres/`)
+1. Copie a pasta `postgres/` inteira para o novo local (ex: `Analise de Dados/ambientes/postgres/`)
 2. Copie `.env.example` para `.env` e ajuste as portas, caso já exista outro ambiente
 Postgres em execução na máquina
 3. Suba com `docker compose up -d`
 
-> Como o `container_name` não é fixado no compose, múltiplas instâncias podem coexistir sem
+Como o `container_name` não é fixado no compose, múltiplas instâncias podem coexistir sem
 conflito de nome, desde que as portas no `.env` sejam distintas.
 
 ## Tecnologias Utilizadas
