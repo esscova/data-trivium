@@ -12,6 +12,7 @@ Ambiente utilizado: `Banco de Dados/ambientes/postgres/`.
 |---|---|---|
 | 01 | `01_criacao-bd.sql` | Criação do banco de dados |
 | 02 | `02_criacao-tabela-cliente.sql` | Criação da tabela cliente |
+| 03 | `03_insercao-tabela-cliente.sql` | Inserção de dados |
 
 ## Exercícios
 
@@ -58,4 +59,6 @@ informados (`NULL`).
 | 14 | Jeferson | | | 01/07/1983 | M | | Brasileiro | | | | | União da Vitória | PR |
 | 15 | Jessica | | | | F | Estudante | | | | | | União da Vitória | PR |
 
-**Nota**: as datas usam formato brasileiro (dd/mm/aaaa) na tabela acima, no script SQL são convertidas para o formato ISO (`aaaa-mm-dd`), padrão aceito pelo Postgres sem depender de locale de sessão.
+**Nota (datas)**: as datas usam formato brasileiro (dd/mm/aaaa) na tabela acima, no script SQL são convertidas para o formato ISO (`aaaa-mm-dd`), padrão aceito pelo Postgres sem depender de locale de sessão.
+
+**Nota**: inconsistências e variações em dados são propositais pois buscam simular errors reais de digitação de usuário.
