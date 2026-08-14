@@ -13,6 +13,7 @@ Ambiente utilizado: `Banco de Dados/ambientes/postgres/`.
 | 01 | `01_criacao-bd.sql` | Criação do banco de dados |
 | 02 | `02_criacao-tabela-cliente.sql` | Criação da tabela cliente |
 | 03 | `03_insercao-tabela-cliente.sql` | Inserção de dados |
+| 04 | `04_consultas-simples.sql` | Consultas simples (SELECT, WHERE, LIKE, BETWEEN, ORDER BY) |
 
 ## Exercícios
 
