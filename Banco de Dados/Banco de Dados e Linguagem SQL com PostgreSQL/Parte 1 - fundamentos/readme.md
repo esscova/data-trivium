@@ -14,6 +14,7 @@ Ambiente utilizado: `Banco de Dados/ambientes/postgres/`.
 | 02 | `02_criacao-tabela-cliente.sql` | Criação da tabela cliente |
 | 03 | `03_insercao-tabela-cliente.sql` | Inserção de dados |
 | 04 | `04_consultas-simples.sql` | Consultas simples (SELECT, WHERE, LIKE, BETWEEN, ORDER BY) |
+| 05 | `05_update-delete.sql` | UPDATE, DELETE |
 
 ## Exercícios
 
@@ -113,3 +114,26 @@ informados (`NULL`).
 
 - 5.5. Apague o cliente Maicon
 - 5.6. Apague a cliente Sandra
+
+### 06. Criar tabelas auxiliares
+
+Crie as tabelas auxiliares abaixo, para armazenar de forma padronizada os atributos que hoje são texto livre em `cliente`, evitando duplicidade e inconsistência de dados (ex.: "Estudante"/"Estude", "Centro"/"CTO"/"CTR").
+
+- 6.1. Crie a tabela `profissao`, com `idprofissao` (chave primária) e `nome` (até 30 caracteres, único). Insira as profissões já existentes na base de clientes: Estudante, Engenheiro, Pedreiro, Jornalista, Professor.
+- 6.2. Crie a tabela `nacionalidade`, com a mesma estrutura de `profissao`. Insira as nacionalidades já existentes: Brasileira, Italiana, Norte-americana, Alemã.
+- 6.3. Crie a tabela `complemento`, com a mesma estrutura. Insira: Casa, Apartamento.
+- 6.4. Crie a tabela `bairro`, com a mesma estrutura. Insira: Cidade Nova, Centro, São Pedro, Santa Rosa.
+- 6.5. Crie a tabela `uf`, com `iduf` (chave primária), `nome` (até 30 caracteres, único) e `sigla` (2 caracteres fixos, única). Insira as unidades de federação já existentes na base de clientes.
+- 6.6. Crie a tabela `municipio`, com `idmunicipio` (chave primária), `nome` (até 30 caracteres, único) e `iduf` (obrigatório, chave estrangeira para `uf`). Insira os municípios já existentes na base de clientes.
+
+### 07. Normalizar `cliente` via chaves estrangeiras
+
+Para cada atributo abaixo, troque o campo de texto livre em `cliente` pelo id correspondente da tabela auxiliar criada no exercício 06, ligado por chave estrangeira.
+
+- 7.1. Substitua `profissao` por `idprofissao`, referenciando `profissao`.
+- 7.2. Substitua `nacionalidade` por `idnacionalidade`, referenciando `nacionalidade`.
+- 7.3. Substitua `complemento` por `idcomplemento`, referenciando `complemento`.
+- 7.4. Substitua `bairro` por `idbairro`, referenciando `bairro`.
+- 7.5. Substitua `municipio` e `uf` por um único `idmunicipio`, referenciando `municipio` (que, por sua vez, referencia `uf`).
+
+**Nota (clientes 16 e 18)**: no exercício 05 os clientes 16 (Maicon) e 18 (Sandra) foram inseridos e depois apagados, restando apenas o cliente 17 (Getúlio) além dos 15 originais. Por isso as associações do exercício 07 incluem o id 17 (ex.: profissão "Estudante"), mas não 16 nem 18.
