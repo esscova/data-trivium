@@ -15,6 +15,8 @@ Ambiente utilizado: `Banco de Dados/ambientes/postgres/`.
 | 03 | `03_insercao-tabela-cliente.sql` | Inserção de dados |
 | 04 | `04_consultas-simples.sql` | Consultas simples (SELECT, WHERE, LIKE, BETWEEN, ORDER BY) |
 | 05 | `05_update-delete.sql` | UPDATE, DELETE |
+| 06 | `06_criacao-tabelas-auxiliares.sql` | Criação de tabelas auxiliares (profissao, nacionalidade, complemento, bairro, municipio, uf) |
+| 07 | `07_normalizar-tabela-clientes.sql` | Exclusão, Alteração e Chaves Estrangeiras |
 
 ## Exercícios
 
@@ -135,5 +137,3 @@ Para cada atributo abaixo, troque o campo de texto livre em `cliente` pelo id co
 - 7.3. Substitua `complemento` por `idcomplemento`, referenciando `complemento`.
 - 7.4. Substitua `bairro` por `idbairro`, referenciando `bairro`.
 - 7.5. Substitua `municipio` e `uf` por um único `idmunicipio`, referenciando `municipio` (que, por sua vez, referencia `uf`).
-
-**Nota (clientes 16 e 18)**: no exercício 05 os clientes 16 (Maicon) e 18 (Sandra) foram inseridos e depois apagados, restando apenas o cliente 17 (Getúlio) além dos 15 originais. Por isso as associações do exercício 07 incluem o id 17 (ex.: profissão "Estudante"), mas não 16 nem 18.
