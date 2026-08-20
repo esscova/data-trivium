@@ -17,6 +17,7 @@ Ambiente utilizado: `Banco de Dados/ambientes/postgres/`.
 | 05 | `05_update-delete.sql` | UPDATE, DELETE |
 | 06 | `06_criacao-tabelas-auxiliares.sql` | Criação de tabelas auxiliares (profissao, nacionalidade, complemento, bairro, municipio, uf) |
 | 07 | `07_normalizar-tabela-clientes.sql` | Exclusão, Alteração e Chaves Estrangeiras |
+| 08 | `08_criacao-tabelas-comerciais.sql` | Criação de fornecedor, vendedor, transportadora e produto |
 
 ## Exercícios
 
@@ -137,3 +138,47 @@ Para cada atributo abaixo, troque o campo de texto livre em `cliente` pelo id co
 - 7.3. Substitua `complemento` por `idcomplemento`, referenciando `complemento`.
 - 7.4. Substitua `bairro` por `idbairro`, referenciando `bairro`.
 - 7.5. Substitua `municipio` e `uf` por um único `idmunicipio`, referenciando `municipio` (que, por sua vez, referencia `uf`).
+
+### 08. Criar tabelas `fornecedor`, `vendedor`, `transportadora` e `produto`
+
+Crie e insira os dados nas tabelas abaixo, que fecham o cadastro comercial do estudo de caso `pedido`.
+
+- 8.1. Crie a tabela `fornecedor`, com `idfornecedor` (chave primária) e `nome` (até 50 caracteres, único). Insira os fornecedores abaixo.
+
+    | IdFornecedor | Nome |
+    |---|---|
+    | 1 | Cap. Computadores |
+    | 2 | AA. Computadores |
+    | 3 | BB Máquinas |
+
+- 8.2. Crie a tabela `vendedor`, com `idvendedor` (chave primária) e `nome` (até 50 caracteres, único). Insira os vendedores abaixo.
+
+    | IdVendedor | Nome |
+    |---|---|
+    | 1 | André |
+    | 2 | Alisson |
+    | 3 | José |
+    | 4 | Ailton |
+    | 5 | Maria |
+    | 6 | Suelem |
+    | 7 | Aline |
+    | 8 | Silvana |
+
+- 8.3. Crie a tabela `transportadora`, com `idtransportadora` (chave primária), `idmunicipio` (opcional, chave estrangeira para `municipio`), `nome` (até 50 caracteres, único), `logradouro` (até 50 caracteres, opcional) e `numero` (até 10 caracteres, opcional). Insira as transportadoras abaixo.
+
+    | IdTransportadora | Nome | Município | Logradouro | Número |
+    |---|---|---|---|---|
+    | 1 | BS. Transportes | União da Vitória | Rua das Limas | 01 |
+    | 2 | União Transportes | São Paulo | | |
+
+- 8.4. Crie a tabela `produto`, com `idproduto` (chave primária), `idfornecedor` (obrigatório, chave estrangeira para `fornecedor`), `nome` (até 50 caracteres) e `valor` (obrigatório, numérico). Insira os produtos abaixo.
+
+    | IdProduto | Fornecedor | Nome | Valor |
+    |---|---|---|---|
+    | 1 | Cap. Computadores | Microcomputador | 800 |
+    | 2 | Cap. Computadores | Monitor | 500 |
+    | 3 | AA. Computadores | Placa mãe | 200 |
+    | 4 | AA. Computadores | HD | 150 |
+    | 5 | AA. Computadores | Placa de vídeo | 200 |
+    | 6 | BB Máquinas | Memória RAM | 100 |
+    | 7 | Cap. Computadores | Gabinete | 35 |
