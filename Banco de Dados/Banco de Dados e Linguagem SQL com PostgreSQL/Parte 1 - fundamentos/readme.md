@@ -192,7 +192,7 @@ Crie e insira os dados nas tabelas abaixo, que fecham o cadastro comercial do es
 - 9.1. Crie a tabela `pedido`, para armazenar os pedidos feitos pelos clientes, com:
     -  `idpedido` (chave primária, obrigatório)
     - `data_pedido` (obrigatória)
-    - `valor` (obrigatório, numérico). 
+    - `valor` (obrigatório, numérico) 
     - `idcliente` (obrigatório, chave estrangeira para `cliente`)
     - `idtransportadora` (opcional, chave estrangeira para `transportadora`)
     - `idvendedor` (obrigatório, chave estrangeira para `vendedor`)
@@ -217,9 +217,15 @@ Crie e insira os dados nas tabelas abaixo, que fecham o cadastro comercial do es
     | 14 | 23/04/2008 | 300 | Geraldo | BS. Transportes | Maria |
     | 15 | 25/04/2008 | 200 | Fernanda | | Maria |
 
-### 10. Criar tabela `pedido_produto`
+### 10. Criar e popular tabela `pedido_produto`
 
-- 10.1. Crie a tabela `pedido_produto`, para armazenar os produtos de cada pedido, com `idpedido` (chave primária composta, chave estrangeira para `pedido`), `idproduto` (chave primária composta, chave estrangeira para `produto`), `quantidade` (obrigatória) e `valor_unitario` (obrigatório, numérico). Insira os itens abaixo.
+- 10.1. Crie a tabela `pedido_produto`, para armazenar os produtos de cada pedido, com:
+    -  `idpedido` (chave primária composta, chave estrangeira para `pedido`) 
+    - `idproduto` (chave primária composta, chave estrangeira para `produto`)
+    - `quantidade` (obrigatória)
+    - `valor_unitario` (obrigatório, numérico)
+
+- 10.2. Insira os itens abaixo.
 
     | IdPedido | IdProduto | Quantidade | Valor Unitário |
     |---|---|---|---|
