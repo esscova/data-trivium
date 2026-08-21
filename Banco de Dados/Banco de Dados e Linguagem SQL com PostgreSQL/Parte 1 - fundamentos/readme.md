@@ -18,6 +18,10 @@ Ambiente utilizado: `Banco de Dados/ambientes/postgres/`.
 | 06 | `06_criacao-tabelas-auxiliares.sql` | Criação de tabelas auxiliares (profissao, nacionalidade, complemento, bairro, municipio, uf) |
 | 07 | `07_normalizar-tabela-clientes.sql` | Exclusão, Alteração e Chaves Estrangeiras |
 | 08 | `08_criacao-tabelas-comerciais.sql` | Criação de fornecedor, vendedor, transportadora e produto |
+| 09 | `09_criacao-tabela-pedido.sql` | Criação da tabela pedido e inserção dos pedidos |
+| 10 | `10_criacao-tabela-pedido_produto.sql` | Criação da tabela pedido_produto e inserção dos itens |
+| 11 | `11_exercicios-consultas-pedidos.sql` | Exercícios de consultas simples envolvendo pedido, produto, vendedor, cliente, transportadora e município |
+
 
 ## Exercícios
 
@@ -182,3 +186,83 @@ Crie e insira os dados nas tabelas abaixo, que fecham o cadastro comercial do es
     | 5 | AA. Computadores | Placa de vídeo | 200 |
     | 6 | BB Máquinas | Memória RAM | 100 |
     | 7 | Cap. Computadores | Gabinete | 35 |
+
+### 09. Criar tabela `pedido`
+
+- 9.1. Crie a tabela `pedido`, para armazenar os pedidos feitos pelos clientes, com `idpedido` (chave primária, obrigatório), `idcliente` (obrigatório, chave estrangeira para `cliente`), `idtransportadora` (opcional, chave estrangeira para `transportadora`), `idvendedor` (obrigatório, chave estrangeira para `vendedor`), `data_pedido` (obrigatória) e `valor` (obrigatório, numérico). Insira os pedidos abaixo.
+
+    | IdPedido | Data do Pedido | Valor | Cliente | Transportadora | Vendedor |
+    |---|---|---|---|---|---|
+    | 1 | 01/04/2008 | 1300 | Manoel | BS. Transportes | André |
+    | 2 | 01/04/2008 | 500 | Manoel | BS. Transportes | André |
+    | 3 | 02/04/2008 | 300 | Fernanda | União Transportes | Maria |
+    | 4 | 05/04/2008 | 1000 | Camila | BS. Transportes | Aline |
+    | 5 | 06/04/2008 | 200 | Cristiano | União Transportes | Suelem |
+    | 6 | 06/04/2008 | 1985 | Fabrício | BS. Transportes | Suelem |
+    | 7 | 06/04/2008 | 800 | Carlos | BS. Transportes | Aline |
+    | 8 | 06/04/2008 | 175 | Carlos | | Silvana |
+    | 9 | 07/04/2008 | 1300 | Gilmar | | Silvana |
+    | 10 | 10/04/2008 | 200 | Ângelo | BS. Transportes | Silvana |
+    | 11 | 15/04/2008 | 300 | Jéssica | União Transportes | André |
+    | 12 | 20/04/2008 | 500 | Jéssica | União Transportes | Maria |
+    | 13 | 20/04/2008 | 350 | Cristiano | BS. Transportes | Aline |
+    | 14 | 23/04/2008 | 300 | Geraldo | BS. Transportes | Maria |
+    | 15 | 25/04/2008 | 200 | Fernanda | | Maria |
+
+    **Nota (divergência de dados)**: no material da aula, o pedido 8 aparece com a vendedora Silvana e o pedido 12 com valor R$ 500,00; no gabarito do professor, o pedido 8 foi cadastrado com a vendedora Aline (idvendedor 7) e o pedido 12 com valor R$ 300,00. Seguindo a metodologia do projeto, o gabarito prevalece.
+
+### 10. Criar tabela `pedido_produto`
+
+- 10.1. Crie a tabela `pedido_produto`, para armazenar os produtos de cada pedido, com `idpedido` (chave primária composta, chave estrangeira para `pedido`), `idproduto` (chave primária composta, chave estrangeira para `produto`), `quantidade` (obrigatória) e `valor_unitario` (obrigatório, numérico). Insira os itens abaixo.
+
+    | IdPedido | IdProduto | Quantidade | Valor Unitário |
+    |---|---|---|---|
+    | 1 | 1 | 1 | 800 |
+    | 1 | 2 | 1 | 500 |
+    | 2 | 2 | 1 | 500 |
+    | 3 | 4 | 2 | 150 |
+    | 4 | 1 | 1 | 800 |
+    | 4 | 3 | 1 | 200 |
+    | 5 | 3 | 1 | 200 |
+    | 6 | 1 | 2 | 800 |
+    | 6 | 7 | 1 | 35 |
+    | 6 | 5 | 1 | 200 |
+    | 6 | 4 | 1 | 150 |
+    | 7 | 1 | 1 | 800 |
+    | 8 | 7 | 5 | 35 |
+    | 9 | 1 | 1 | 800 |
+    | 9 | 2 | 1 | 500 |
+    | 10 | 5 | 1 | 200 |
+    | 11 | 5 | 1 | 200 |
+    | 11 | 6 | 1 | 100 |
+    | 12 | 2 | 1 | 500 |
+    | 13 | 3 | 1 | 200 |
+    | 13 | 4 | 1 | 150 |
+    | 14 | 6 | 3 | 100 |
+    | 15 | 3 | 1 | 200 |
+
+### 11. Consultas simples com pedidos, produtos, vendedores e transportadoras
+
+- 11.1. Somente o nome de todos os vendedores em ordem alfabética.
+- 11.2. Os produtos que o preço seja maior que R$ 200,00, em ordem crescente pelo preço.
+- 11.3. O nome do produto, o preço e o preço reajustado em 10%, ordenado pelo nome do produto.
+- 11.4. Os municípios do Rio Grande do Sul.
+- 11.5. Os pedidos feitos entre 10/04/2008 e 25/04/2008, ordenado pelo valor.
+- 11.6. Os pedidos que o valor esteja entre R$ 1.000,00 e R$ 1.500,00.
+- 11.7. Os pedidos que o valor não esteja entre R$ 100,00 e R$ 500,00.
+- 11.8. Os pedidos do vendedor André, ordenado pelo valor em ordem decrescente.
+- 11.9. Os pedidos do cliente Manoel, ordenado pelo valor em ordem crescente.
+- 11.10. Os pedidos da cliente Jéssica que foram feitos pelo vendedor André.
+- 11.11. Os pedidos que foram transportados pela transportadora União Transportes.
+- 11.12. Os pedidos feitos pela vendedora Maria ou pela vendedora Aline.
+- 11.13. Os clientes que moram em União da Vitória ou Porto União.
+- 11.14. Os clientes que não moram em União da Vitória e nem em Porto União.
+- 11.15. Os clientes que não informaram o logradouro.
+- 11.16. Os clientes que moram em avenidas.
+- 11.17. Os vendedores que o nome começa com a letra S.
+- 11.18. Os vendedores que o nome termina com a letra A.
+- 11.19. Os vendedores que o nome não começa com a letra A.
+- 11.20. Os municípios que começam com a letra P e são de Santa Catarina.
+- 11.21. As transportadoras que informaram o endereço.
+- 11.22. Os itens do pedido 01.
+- 11.23. Os itens do pedido 06 ou do pedido 10.
