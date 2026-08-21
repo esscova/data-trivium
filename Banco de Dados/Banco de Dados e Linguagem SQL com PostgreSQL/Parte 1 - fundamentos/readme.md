@@ -187,9 +187,17 @@ Crie e insira os dados nas tabelas abaixo, que fecham o cadastro comercial do es
     | 6 | BB Máquinas | Memória RAM | 100 |
     | 7 | Cap. Computadores | Gabinete | 35 |
 
-### 09. Criar tabela `pedido`
+### 09. Criar e popular tabela `pedido`
 
-- 9.1. Crie a tabela `pedido`, para armazenar os pedidos feitos pelos clientes, com `idpedido` (chave primária, obrigatório), `idcliente` (obrigatório, chave estrangeira para `cliente`), `idtransportadora` (opcional, chave estrangeira para `transportadora`), `idvendedor` (obrigatório, chave estrangeira para `vendedor`), `data_pedido` (obrigatória) e `valor` (obrigatório, numérico). Insira os pedidos abaixo.
+- 9.1. Crie a tabela `pedido`, para armazenar os pedidos feitos pelos clientes, com:
+    -  `idpedido` (chave primária, obrigatório)
+    - `data_pedido` (obrigatória)
+    - `valor` (obrigatório, numérico). 
+    - `idcliente` (obrigatório, chave estrangeira para `cliente`)
+    - `idtransportadora` (opcional, chave estrangeira para `transportadora`)
+    - `idvendedor` (obrigatório, chave estrangeira para `vendedor`)
+
+- 9.2. Insira os pedidos abaixo.
 
     | IdPedido | Data do Pedido | Valor | Cliente | Transportadora | Vendedor |
     |---|---|---|---|---|---|
@@ -208,8 +216,6 @@ Crie e insira os dados nas tabelas abaixo, que fecham o cadastro comercial do es
     | 13 | 20/04/2008 | 350 | Cristiano | BS. Transportes | Aline |
     | 14 | 23/04/2008 | 300 | Geraldo | BS. Transportes | Maria |
     | 15 | 25/04/2008 | 200 | Fernanda | | Maria |
-
-    **Nota (divergência de dados)**: no material da aula, o pedido 8 aparece com a vendedora Silvana e o pedido 12 com valor R$ 500,00; no gabarito do professor, o pedido 8 foi cadastrado com a vendedora Aline (idvendedor 7) e o pedido 12 com valor R$ 300,00. Seguindo a metodologia do projeto, o gabarito prevalece.
 
 ### 10. Criar tabela `pedido_produto`
 
