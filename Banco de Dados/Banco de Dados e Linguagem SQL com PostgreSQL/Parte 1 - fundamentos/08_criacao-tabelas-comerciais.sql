@@ -41,7 +41,7 @@ CREATE TABLE vendedor (
     nome VARCHAR (50) NOT NULL,
 
     CONSTRAINT pk_vendedor_idvendedor 
-        PRIMARY KEY (idvendedor)
+        PRIMARY KEY (idvendedor),
     CONSTRAINT un_vendedor_nome
         UNIQUE (nome)
 );
